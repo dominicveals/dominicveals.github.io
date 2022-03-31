@@ -12,23 +12,30 @@ var level01 = function (window) {
         // this data will allow us to define all of the
         // behavior of our game
         var levelData = {
-            "name": "Robot Romp",
+            "name": "Ghostescape",
             "number": 1, 
             "speed": -3,
             "gameItems": [
                 { "type": "sawblade", "x": 1200, "y": groundY -110},
                 { "type": "sawblade", "x": 1509, "y": groundY -20},
                 { "type": "sawblade", "x": 1965, "y": groundY-110},
+                { "type": "sawblade", "x": 2265, "y": groundY-110},
+                { "type": "sawblade", "x": 3365, "y": groundY-30},
+                { "type": "sawblade", "x": 3065, "y": groundY-30},
                
-               
-                { "type": "enemy", "x": 1300, "y": groundY-50},
-                { "type": "enemy", "x": 1630, "y": groundY-50},
-                { "type": "enemy", "x": 2200, "y": groundY-50},
+                { "type": "enemy", "x": 1700, "y": groundY-110},
+                { "type": "enemy", "x": 2800, "y": groundY-50},
+                { "type": "enemy", "x": 2500, "y": groundY-30},
+                { "type": "enemy", "x": 2800, "y": groundY-50},
+                { "type": "enemy", "x": 3200, "y": groundY-90},
+                { "type": "enemy", "x": 3700, "y": groundY-60},
+                { "type": "enemy", "x": 4000, "y": groundY-100},
 
-                { "type": "reward", "x": 1522, "y": groundY-50},
-                { "type": "reward", "x": 2370, "y": groundY-50},
-                { "type": "reward", "x": 4340, "y": groundY-50},
+                { "type": "enemy2", "x": 400, "y": groundY-100},
 
+                { "type": "reward", "x": 3000, "y": groundY-20},
+                { "type": "reward", "x": 2000, "y": groundY-10},
+                { "type": "reward", "x": 3800, "y": groundY-120},
             ]
         };
         window.levelData = levelData;
@@ -37,8 +44,8 @@ var level01 = function (window) {
 
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
-     
-
+             
+            
         function createSawblade(x,y){
               var hitZoneSize = 25;
              var damageFromObstacle = 10;
@@ -58,38 +65,71 @@ var level01 = function (window) {
 
         function createEnemy(x,y){
             var enemy = game.createGameItem('enemy',25);
-            var redSquare = draw.rect(50,50,'red');
-            redSquare.x = -25; //x value for enemy 
-            redSquare.y = -25;// y value for enemy
-            enemy.addChild(redSquare);//adds a red square to he enemy
+            var enemyImage = draw.bitmap('img/enemy.png');
+            enemyImage.x = -28; //x value for enemy 
+            enemyImage.y = -25;// y value for enemy
+            enemy.addChild(enemyImage);//adds a red square to he enemy
 
 
             enemy.x = x;//x value for the red square
-            enemy.y = y;
+            enemy.y = y;//y value for enemy
+
+            enemyImage.scaleX = 0.50;
+            enemyImage.scaleY = 0.50;
             game.addGameItem(enemy);
-            enemy.velocityX = -1; //moves the enemy
+            enemy.velocityX = -3; //moves the enemy
             enemy.rotationalVelocity = 0;  //rotates the enemy
+
+     
             
             //detects if enemy hits halle 
             enemy.onPlayerCollision = function() {
-                game.changeIntegrity(-33)//decreases health
+                game.changeIntegrity(-25)//decreases health
                 console.log('The enemy has hit Halle'); //prints to the console when halle has been hit
-                    enemy.shrink(12);
+                    enemy.shrink();
             };
                             //detects if the enemy ollides with the projectile and will fade oyt
             enemy.onProjectileCollision = function() {
-                game.increase(10);  
-                enemy.shrink(22);                           
+                game.increaseScore(10);  
+                enemy.shrink();                           
             };
          };
-                  
+    function createEnemy2(x,y){ 
+        var enemy = game.createGameItem('enemy2',25);
+        var enemyImage = draw.bitmap('img/teach.png');
+        enemyImage.x = -130; //x value for enemy 
+        enemyImage.y = -105;// y value for enemy
+        enemy.addChild(enemyImage);//adds a red square to he enemy
+
+
+        enemy.x = x;//x value for the red square
+        enemy.y = y;//y value for enemy
+
+        enemyImage.scaleX = 0.50;
+        enemyImage.scaleY = 0.50;
+        game.addGameItem(enemy);
+        enemy.velocityX = -1; //moves the enemy
+        enemy.rotationalVelocity = 0;  //rotates the enemy
+
+
+
+        //detects if enemy hits halle 
+        enemy.onPlayerCollision = function() {
+            game.changeIntegrity(-43)//decreases health
+            console.log('The enemy has hit Halle'); //prints to the console when halle has been hit
+                enemy.shrink();
+        };
+     }
+
    function createReward(x,y){
             var reward = game.createGameItem('reward',25);
-            var blueSquare = draw.rect(50,50,'blue');
-            blueSquare.x = -25; //x value for reward 
-            blueSquare.y = -25;// y value for reward
-            reward.addChild(blueSquare);//adds a red square to he reward
+            var rewardImage = draw.bitmap('img/gumgum.png');
+            rewardImage.x = -22; //x value for reward 
+            rewardImage.y = -32;// y value for reward
+            reward.addChild(rewardImage);//adds a red square to he reward
 
+            rewardImage.scaleX = 0.50;
+            rewardImage.scaleY = 0.50;
 
             reward.x = x;//x value for the red square
             reward.y = y;
@@ -101,7 +141,7 @@ var level01 = function (window) {
             reward.onPlayerCollision = function() {
                 game.changeIntegrity(+33)//increases health
                 console.log('The reward has hit Halle'); //prints to the console when halle has been hit
-                    reward.shrink(12);
+                    reward.shrink();
             };
    }
          
@@ -118,6 +158,9 @@ var level01 = function (window) {
            if(gameItem.type=== "reward"){
              createReward(gameItem.x, gameItem.y)
            }
+           if(gameItem.type=== "enemy2"){
+            createEnemy2(gameItem.x, gameItem.y)
+           }
         };
      
      
@@ -132,4 +175,4 @@ if((typeof process !== 'undefined') &&
     (typeof process.versions.node !== 'undefined')) {
     // here, export any references you need for tests //
     module.exports = level01;
-    }
+}

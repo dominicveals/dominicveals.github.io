@@ -37,7 +37,7 @@ var background = function (window) {
             // TODO: 2 - Part 2
             // this fills the background with a obnoxious yellow
             // you should modify this to suit your game
-            var backgroundFill = draw.rect(canvasWidth,groundY,'yellow');
+            var backgroundFill = draw.rect(canvasWidth,groundY,'light blue');
             background.addChild(backgroundFill);
             
             // TODO: 3 - Add a moon and starfield
@@ -57,7 +57,7 @@ var background = function (window) {
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             for(var i = 0; i < 5; i++) {
                 var buildingHeights = [100, 150, 200, 230, 240];
-                var building = draw.rect(75,buildingHeights[i],'LightGray','Black',1);
+                var building = draw.rect(75,buildingHeights[i],'Red','White',1);
                 building.x = 200*i;
                 building.y = groundY-buildingHeights[i];
                 background.addChild(building);
@@ -78,7 +78,13 @@ var background = function (window) {
             tree.x = 0;
             tree.y = groundY-225;
             background.addChild(tree);
-            
+
+            var onePiece = draw.bitmap('img/onePiece.png');
+            onePiece.x = 200;
+            onePiece.y = groundY-450;
+            onePiece.scaleX = 0.71;
+            onePiece.scaleY = 0.71;
+            background.addChild(onePiece);
         } // end of render function - DO NOT DELETE
         
         
