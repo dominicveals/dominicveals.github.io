@@ -74,17 +74,17 @@ var background = function (window) {
             
             
             // TODO 4: Part 1 - Add a tree
-            tree = draw.bitmap('img/tree.png');
-            tree.x = 0;
-            tree.y = groundY-225;
-            background.addChild(tree);
+            tree = draw.bitmap('img/tree.png'); // adds the trees background image
+            tree.x = 0; // sets the trees x value
+            tree.y = groundY-225; //sets the trees Y value
+            background.addChild(tree); // adds the tree to the background
 
-            var onePiece = draw.bitmap('img/onePiece.png');
-            onePiece.x = 200;
-            onePiece.y = groundY-450;
-            onePiece.scaleX = 0.71;
-            onePiece.scaleY = 0.71;
-            background.addChild(onePiece);
+            var onePiece = draw.bitmap('img/onePiece.png'); // adds the one piece symbol to the background
+            onePiece.x = 200;  // sets the x value for the one piece symbol
+            onePiece.y = groundY-450; // sets the Y value for the one piece sybol
+            onePiece.scaleX = 0.71;  // sets how wide the symbol will be 
+            onePiece.scaleY = 0.71; // sets how tall the symbol will be
+            background.addChild(onePiece); // adds the one piece symbol to the background
         } // end of render function - DO NOT DELETE
         
         

@@ -32,7 +32,7 @@ var init = function (window) {
     ground = opspark.makeGround(app);
 
     // TODO 2 : add background
-    var background = opspark.makeBackground(app,ground);
+    var background = opspark.makeBackground(app,ground); // adds the background for the game
     view.addChild(background);
     
     var help = draw.textfield('MOVES || up: jump | right: flying jump | down: duck | space: fire | q self destruct!', 
