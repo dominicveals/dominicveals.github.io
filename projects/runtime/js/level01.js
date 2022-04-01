@@ -36,7 +36,7 @@ var level01 = function (window) {
                 { "type": "enemy2", "x": 4300, "y": groundY-40},
                 { "type": "enemy2", "x": 4900, "y": groundY-120},
                 { "type": "enemy2", "x": 5200, "y": groundY-130},
-                { "type": "enemy2", "x": 5300, "y": groundY-10},
+                { "type": "enemy2", "x": 5300, "y": groundY-30},
 
                 { "type": "reward", "x": 3000, "y": groundY-20},
                 { "type": "reward", "x": 2000, "y": groundY-10},
